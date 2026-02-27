@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ramadan Mubarak 1447 H</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Starfield canvas -->
+    <canvas id="stars"></canvas>
+
+    <!-- Moon crescent decoration -->
+    <div class="moon-wrap">
+      <div class="moon"></div>
+      <div class="moon-glow"></div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+      <header class="hero">
+        <span class="label fade-in" style="--d: 0.1s">Marhaban Ya</span>
+        <h1 class="title fade-in" style="--d: 0.3s">Ramadan</h1>
+        <p class="subtitle fade-in" style="--d: 0.5s">1447 H / 2026 M</p>
+        <p class="verse fade-in" style="--d: 0.7s">
+          <em
+            >"Barangsiapa berpuasa Ramadan dengan iman dan mengharap pahala,<br />
+            niscaya diampuni dosa-dosanya yang telah lalu."</em
+          >
+        </p>
+        <p class="verse-src fade-in" style="--d: 0.9s">
+          — HR. Bukhari &amp; Muslim
+        </p>
+      </header>
+
+      <!-- Countdown -->
+      <section class="card fade-in" style="--d: 1.1s" id="section-countdown">
+        <h2 class="card-title">Hitung Mundur Ramadan</h2>
+        <div id="countdown" class="countdown-grid">
+          <div class="count-box">
+            <span id="cd-days">--</span><small>Hari</small>
+          </div>
+          <div class="count-box">
+            <span id="cd-hours">--</span><small>Jam</small>
+          </div>
+          <div class="count-box">
+            <span id="cd-mins">--</span><small>Menit</small>
+          </div>
+          <div class="count-box">
+            <span id="cd-secs">--</span><small>Detik</small>
+          </div>
+        </div>
+        <p id="countdown-msg" class="countdown-msg"></p>
+      </section>
+
+      <!-- Prayer Times -->
+      <section class="card fade-in" style="--d: 1.3s" id="section-prayer">
+        <h2 class="card-title">Jadwal Sholat Hari Ini</h2>
+        <p class="card-note">
+          Masukkan kotamu untuk menampilkan jadwal sholat.
+        </p>
+        <div class="input-row">
+          <input type="text" id="city-input" placeholder="Contoh: Jakarta" />
+          <button id="get-prayer-btn">Cari</button>
+        </div>
+        <div id="prayer-times" class="prayer-grid hidden"></div>
+        <p id="prayer-error" class="error-msg"></p>
+      </section>
+
+      <!-- Tasbih / Dzikir Counter -->
+      <section class="card fade-in" style="--d: 1.5s" id="section-tasbih">
+        <h2 class="card-title">Penghitung Tasbih</h2>
+        <div class="tasbih-wrap">
+          <div class="tasbih-display">
+            <span id="tasbih-count">0</span>
+            <small id="tasbih-label">SubhanAllah</small>
+          </div>
+          <button
+            id="tasbih-btn"
+            class="tasbih-btn"
+            aria-label="Ketuk untuk dzikir"
+          >
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 6v6l4 2" />
+            </svg>
+          </button>
+          <div class="tasbih-controls">
+            <button id="tasbih-prev" class="ctrl-btn">←</button>
+            <button id="tasbih-reset" class="ctrl-btn">Reset</button>
+            <button id="tasbih-next" class="ctrl-btn">→</button>
+          </div>
+          <p id="tasbih-progress" class="tasbih-progress"></p>
+        </div>
+      </section>
+
+      <!-- Doa Berbuka / Sahur -->
+      <section class="card fade-in" style="--d: 1.7s" id="section-doa">
+        <h2 class="card-title">Doa Puasa</h2>
+        <div class="doa-tabs">
+          <button class="doa-tab active" data-doa="buka">Berbuka</button>
+          <button class="doa-tab" data-doa="sahur">Sahur / Niat</button>
+        </div>
+        <div id="doa-content" class="doa-content">
+          <p class="doa-arabic">
+            اللَّهُمَّ لَكَ صُمْتُ وَبِكَ آمَنْتُ وَعَلَى رِزْقِكَ أَفْطَرْتُ
+          </p>
+          <p class="doa-latin">
+            <em
+              >Allāhumma laka ṣumtu wa bika āmantu wa 'alā rizqika afṭartu.</em
+            >
+          </p>
+          <p class="doa-arti">
+            "Ya Allah, karena-Mu aku berpuasa, kepada-Mu aku beriman, dan dengan
+            rezeki-Mu aku berbuka."
+          </p>
+        </div>
+      </section>
+
+      <!-- Greeting Card Generator -->
+      <section class="card fade-in" style="--d: 1.9s" id="section-greeting">
+        <h2 class="card-title">Buat Kartu Ucapan</h2>
+        <input
+          type="text"
+          id="greeting-name"
+          placeholder="Nama penerima (opsional)"
+          maxlength="40"
+        />
+        <canvas id="greeting-canvas" width="600" height="320"></canvas>
+        <button id="download-btn" class="download-btn">Unduh Kartu</button>
+      </section>
+
+      <footer class="footer fade-in" style="--d: 2.1s">
+        <p>Semoga Ramadan ini membawa berkah, ampunan, dan kedamaian. 🌙</p>
+        <p class="footer-small">Web Design by Edoo</p>
+        <div class="socmed">
+          <a
+            href="https://www.instagram.com/donzzvoid_?igsh=MTlwNGZlNnIzbm54YQ=="
+            target="_blank"
+            class="socmed-link"
+          >
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a
+            href="https://www.tiktok.com/@donzsaphire?_r=1&_t=ZS-946gTNrafK6"
+            target="_blank"
+            class="socmed-link"
+          >
+            <i class="fab fa-tiktok"></i>
+          </a>
+          <a
+            href="https://www.facebook.com/redoni099"
+            target="_blank"
+            class="socmed-link"
+          >
+            <i class="fab fa-facebook-f"></i>
+          </a>
+        </div>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+
+    <audio id="bgm" src="musik.mp3" loop></audio>
+
+    <button
+      id="bgm-btn"
+      onclick="
+        const a = document.getElementById('bgm');
+        const b = document.getElementById('bgm-btn');
+        if (a.paused) {
+          a.play();
+          b.textContent = '🔊';
+        } else {
+          a.pause();
+          b.textContent = '🔇';
+        }
+      "
+    >
+      🔊
+    </button>
+  </body>
+</html>
