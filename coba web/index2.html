@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>foryouu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        scrollbar-gutter: stable; /* Mencegah layout bergeser tanpa memaksa scrollbar muncul terus */
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Fredoka", sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f5faff;
+        overflow-x: hidden;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 100%;
+        padding: 10vw 7vw 0 7vw;
+        margin: 0;
+        background: none;
+        text-align: center;
+        position: relative;
+        overflow: visible;
+        box-shadow: none;
+      }
+      .card img {
+        width: 60vw;
+        max-width: 320px;
+        min-width: 120px;
+        margin: 40px auto 20px auto;
+        display: block;
+      }
+      .title {
+        font-size: 7vw;
+        font-weight: 700;
+        color: #0d47a1;
+        margin-bottom: 12px;
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+      .subtitle {
+        font-size: 4vw;
+        color: #0d47a1;
+        margin-bottom: 24px;
+        animation: fadeInUp 1s ease-out forwards;
+      }
+      .btn {
+        font-size: 4vw;
+        padding: 14px 36px;
+        border-radius: 999px;
+        border: none;
+        outline: none;
+        background: #0d47a1;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        animation: pulse 1.5s ease-in-out infinite;
+        margin-bottom: 40px;
+      }
+      #typedText,
+      .title,
+      .subtitle {
+        box-sizing: border-box;
+        padding-left: 2vw;
+        padding-right: 2vw;
+        word-break: break-word;
+      }
+      @media (min-width: 700px) {
+        .card {
+          max-width: 420px !important;
+          padding: 60px 40px 0 40px;
+          margin: 40px auto 0 auto;
+        }
+        .card img {
+          width: 180px !important;
+          margin: 40px auto 20px auto;
+        }
+        .title {
+          font-size: 32px !important;
+        }
+        .subtitle {
+          font-size: 18px !important;
+        }
+        .btn {
+          font-size: 18px !important;
+          padding: 14px 36px !important;
+        }
+        #typedText,
+        .title,
+        .subtitle {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+      }
+
+      /* animasi floating untuk gambar */
+      .card img {
+        width: 60vw;
+        max-width: 320px;
+        min-width: 120px;
+        margin: 40px auto 20px auto;
+        display: block;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      .card img.stop-animation {
+        animation: none;
+      }
+
+      /* tombol tap */
+      .btn {
+        font-size: 14px;
+        padding: 10px 24px;
+        border-radius: 999px;
+        border: none;
+        outline: none;
+        background: #0d47a1;
+        color: #fff;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        animation: pulse 1.5s ease-in-out infinite;
+        margin-bottom: 40px;
+      }
+
+      .btn:active {
+        transform: scale(0.96);
+      }
+
+      /* efek glitter kecil */
+      .sparkle {
+        position: absolute;
+        font-size: 14px;
+        opacity: 0;
+        animation: sparkle 2.5s linear infinite;
+      }
+      .sparkle:nth-child(1) {
+        top: 18%;
+        left: 15%;
+        animation-delay: 0s;
+      }
+      .sparkle:nth-child(2) {
+        top: 12%;
+        right: 12%;
+        animation-delay: 0.4s;
+      }
+      .sparkle:nth-child(3) {
+        top: 40%;
+        right: 6%;
+        animation-delay: 0.8s;
+      }
+
+      /* KEYFRAMES */
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(13, 71, 161, 0.5);
+        }
+        70% {
+          transform: scale(1.06);
+          box-shadow: 0 0 0 12px rgba(13, 71, 161, 0);
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(13, 71, 161, 0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes sparkle {
+        0% {
+          transform: translateY(0);
+          opacity: 0;
+        }
+        30% {
+          opacity: 1;
+        }
+        70% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-10px);
+          opacity: 0;
+        }
+      }
+
+      /* Surprise Section */
+      .surprise {
+        display: none;
+        width: 100%;
+        text-align: center;
+        animation: fadeInUp 1s ease-out forwards;
+      }
+      .surprise.show {
+        display: block;
+      }
+
+      /* Confetti */
+      .confetti {
+        position: fixed;
+        font-size: 24px;
+        animation: fall linear forwards;
+        z-index: 2147483647;
+        pointer-events: none;
+      }
+
+      @keyframes fall {
+        to {
+          transform: translateY(100vh) rotate(720deg);
+        }
+      }
+
+      /* Top Right Music Button */
+      .music-btn-top {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+        background: #fff;
+        border: 2px solid #0d47a1;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+      .music-btn-top:hover {
+        transform: scale(1.1);
+      }
+      .music-btn-top svg {
+        width: 20px;
+        height: 20px;
+        fill: #0d47a1;
+      }
+
+      /* Music Section Styles */
+      .spotify-wrapper {
+        width: 100%;
+        max-width: 500px;
+        opacity: 0;
+        transform: translateX(100px); /* Start from right */
+        transition: opacity 1.5s ease, transform 1.5s ease;
+        z-index: 5;
+        margin: 0 auto;
+      }
+
+      .spotify-wrapper.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* Cursor Effect */
+      .cursor {
+        display: inline-block;
+        width: 3px;
+        height: 1em;
+        background-color: #2979ff;
+        margin-left: 2px;
+        animation: blink 1s infinite;
+        vertical-align: text-bottom;
+      }
+
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      #typedText,
+      .title,
+      .subtitle {
+        box-sizing: border-box;
+        padding-left: 2vw;
+        padding-right: 2vw;
+        word-break: break-word;
+      }
+
+      /* Password Section */
+      #passwordSection {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #f5faff;
+        z-index: 2000;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .pass-img {
+        width: 120px;
+        margin-bottom: 20px;
+      }
+      .pass-title {
+        color: #0d3f8a;
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .pass-indicators {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 30px;
+      }
+      .pass-dot {
+        width: 15px;
+        height: 15px;
+        border: 2px solid #0d47a1;
+        border-radius: 50%;
+        transition: all 0.2s;
+        background: transparent;
+      }
+      .pass-dot.filled {
+        background: #0d47a1;
+        transform: scale(1.1);
+      }
+      .keypad {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        max-width: 300px;
+        width: 100%;
+      }
+      .key {
+        aspect-ratio: 1.5;
+        background: #fff;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: #0d47a1;
+        box-shadow: 0 4px 10px rgba(13, 71, 161, 0.1);
+        cursor: pointer;
+        user-select: none;
+        transition: transform 0.1s;
+      }
+      .key:active {
+        transform: scale(0.95);
+        background: #eaf0f5;
+      }
+      .pass-clue {
+        margin-top: 30px;
+        color: #0d47a1;
+        opacity: 0.7;
+        font-size: 14px;
+        text-align: center;
+        width: 100%;
+        max-width: 300px;
+      }
+      .shake {
+        animation: shake 0.4s ease-in-out;
+      }
+      @keyframes shake {
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-10px);
+        }
+        75% {
+          transform: translateX(10px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Right Music Button -->
+    <button class="music-btn-top" onclick="toggleTopMusic()">
+      <svg
+        id="music-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+      >
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </button>
+    <audio id="bgMusic" loop>
+      <source src="dirayakan.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- Password Section -->
+    <div id="passwordSection">
+      <img src ="lucu 2.webp" alt="lock" class="pass-img" />
+      <div class="pass-title">
+        Hi love, ayo tebak passwordnya,<br />I bet u knoww!!
+      </div>
+
+      <div class="pass-indicators" id="passIndicators">
+        <div class="pass-dot"></div>
+        <div class="pass-dot"></div>
+        <div class="pass-dot"></div>
+        <div class="pass-dot"></div>
+        <div class="pass-dot"></div>
+        <div class="pass-dot"></div>
+      </div>
+
+      <div class="keypad">
+        <div class="key" onclick="addDigit(1)">1</div>
+        <div class="key" onclick="addDigit(2)">2</div>
+        <div class="key" onclick="addDigit(3)">3</div>
+        <div class="key" onclick="addDigit(4)">4</div>
+        <div class="key" onclick="addDigit(5)">5</div>
+        <div class="key" onclick="addDigit(6)">6</div>
+        <div class="key" onclick="addDigit(7)">7</div>
+        <div class="key" onclick="addDigit(8)">8</div>
+        <div class="key" onclick="addDigit(9)">9</div>
+        <div class="key" style="visibility: hidden; pointer-events: none"></div>
+        <div class="key" onclick="addDigit(0)">0</div>
+        <div class="key" onclick="deleteDigit()">⌫</div>
+      </div>
+
+      <div class="pass-clue">clue : your birthday</div>
+    </div>
+
+    <!-- Music Section (New Page) -->
+    <div class="card" id="musicSection" style="display: none">
+
+      <div class="music-content">
+        <div
+          id="cassette-wrapper"
+          class="cassette-wrapper"
+          onclick="showSpotify()"
+          style="cursor: pointer"
+        >
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/9448/9448086.png"
+            alt="Cassette Tape"
+            class="cassette-img"
+            style="
+              width: 150px;
+              display: block;
+              margin: 0 auto 20px;
+              animation: float 3s ease-in-out infinite;
+            "
+          />
+          <p
+            class="cassette-label"
+            style="font-size: 18px; color: #23408e; font-weight: bold"
+          >
+            our song 🎵
+          </p>
+        </div>
+
+        <div id="spotify-wrapper" class="spotify-wrapper" style="display: none">
+          <iframe
+            style="border-radius: 12px"
+            src="https://open.spotify.com/embed/playlist/18IukRTetlvOVRcsCrgWIA?si=9F6kyYevTumxo2bKZdLyAw&pi=Ktne9j4sTtawM"
+            width="100%"
+            height="352"
+            frameborder="0"
+            allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+      <br />
+      <button
+        id="to-final-page"
+        class="btn"
+        onclick="finalSurprise()"
+        style="display: none"
+      >
+        Lanjut &rarr;
+      </button>
+    </div>
+
+    <!-- Welcome Section (Page 2) -->
+    <div class="card" id="welcomeSection" style="display: none">
+      <img
+        src="gif/stiker 2.gif"
+        id="welcomeGif"
+        alt="welcome"
+        style="width: 180px; display: block; margin: 0 auto 20px"
+      />
+      <div class="title" style="font-size: 30px">hi, pretty 🫶🏻👋🏻</div>
+      <br />
+      <button class="btn" onclick="showReadyPage()">tap disinii <3</button>
+    </div>
+
+    <!-- Ready Section (Page 3) -->
+    <div class="card" id="readySection" style="display: none">
+      <img
+        src="gif/stiker 3.gif"
+        alt="ready"
+        style="width: 180px; display: block; margin: 0 auto 20px"
+      />
+      <div class="title" style="font-size: 24px">
+        are you readyy to open thisss?
+      </div>
+      <div
+        style="
+          display: flex;
+          gap: 15px;
+          justify-content: center;
+          margin-top: 20px;
+          margin-bottom: 40px;
+        "
+      >
+        <button
+          class="btn"
+          onclick="showOpenItPage()"
+          style="margin-bottom: 0; padding: 8px 24px; font-size: 14px"
+        >
+          yess
+        </button>
+        <button
+          class="btn"
+          onclick="showRefusePage()"
+          style="
+            margin-bottom: 0;
+            padding: 8px 24px;
+            font-size: 14px;
+            background: #fff;
+            color: #0d47a1;
+            border: 2px solid #0d47a1;
+          "
+        >
+          noo
+        </button>
+      </div>
+    </div>
+
+    <!-- Refuse Section (Page 3b) -->
+    <div class="card" id="refuseSection" style="display: none">
+      <img
+        src="gif/stiker 4.gif"
+        alt="angry"
+        style="width: 180px; display: block; margin: 0 auto 20px"
+      />
+      <div class="title" style="font-size: 24px">OH GITU SEKARANG KAMU SAMA AKU?😡</div>
+      <br />
+      <button class="btn" onclick="backToReady()">back</button>
+    </div>
+
+    <!-- Open It Section (Page 4) -->
+    <div class="card" id="openItSection" style="display: none">
+      <img
+        src="gif/stiker 5.gif"
+        alt="cute"
+        style="width: 180px; display: block; margin: 0 auto 20px"
+      />
+      <div class="title" style="font-size: 20px; line-height: 1.5">
+        Today, this pretty girl turns 18! happy birthday, my love 🤍
+      </div>
+
+      <br />
+      <button class="btn" onclick="showGiftPage()">open it &lt;3</button>
+    </div>
+
+    <!-- Gift Section (Page 5) -->
+    <div class="card" id="giftSection" style="display: none">
+      <img
+        src="gif/stiker 6.gif"
+        alt="gift"
+        style="width: 180px; display: block; margin: 0 auto 20px"
+      />
+      <div class="title" style="font-size: 24px">
+        Happy birthday to my most beautiful, loving, and caring girlfriend 🤍
+      </div>
+      <div class="subtitle" style="font-size: 18px">
+        I love youu so muchh!!!
+      </div>
+      <br />
+      <button class="btn" onclick="showLastPage()">
+        i have something for you 💌
+      </button>
+    </div>
+
+    <!-- Last Section (Page 6) -->
+    <div class="card" id="lastSection" style="display: none">
+      <img
+        src="gif/stiker 7.gif"
+        alt="last"
+        style="width: 180px; display: block; margin: 0 auto 20px"
+      />
+      <div class="title" style="font-size: 20px; line-height: 1.5">
+        okayy last one, i made something for your birthday, read it slowly okayyy
+      </div>
+      <br />
+      <button
+        class="btn"
+        onclick="enterRealMain()"
+        style="
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+          padding: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto;
+        "
+      >
+        &lt;3
+      </button>
+    </div>
+
+    <!-- ORIGINAL CONTENT -->
+    <div class="surprise" id="fifthSection" style="display: none">
+      <div class="card">
+        <img
+          src="images/foto 1.jpg"
+          alt="us"
+          style="
+            width: 100%;
+            max-width: 280px;
+            border-radius: 12px;
+            display: block;
+            margin: 0 auto 20px;
+            animation: none;
+          "
+        />
+        <div class="title" style="font-size: 22px; line-height: 1.5">
+          This was our first picture, a moment I’ll always remember
+        </div>
+        <br />
+        <button class="btn" onclick="showSixthPage()">klik ini&lt;3</button>
+      </div>
+    </div>
+
+    <div class="surprise" id="sixthSection" style="display: none">
+      <div class="card">
+        <img
+          src="images/foto 2.jpg"
+          alt="us"
+          style="
+            width: 100%;
+            max-width: 280px;
+            border-radius: 12px;
+            display: block;
+            margin: 0 auto 20px;
+            animation: none;
+          "
+        />
+        <div class="title" style="font-size: 22px; line-height: 1.5">
+          I’m so grateful for every moment we’ve shared since then
+        </div>
+        <br />
+        <button class="btn" onclick="showSeventhPage()">klik ini &lt;3</button>
+      </div>
+    </div>
+
+    <div class="surprise" id="seventhSection" style="display: none">
+      <div class="card">
+        <img
+          src link="https://cute-website-foryou.netlify.app/gif/stiker%204.gif"
+          alt="us"
+          style="
+            width: 100%;
+            max-width: 280px;
+            border-radius: 12px;
+            display: block;
+            margin: 0 auto 20px;
+            animation: none;
+          "
+        />
+        <div class="title" style="font-size: 22px; line-height: 1.5">
+          Thank you for being part of my days and making them feel special
+        </div>
+        <br />
+        <button class="btn" onclick="showEightPage()">klik ini &lt;3</button>
+      </div>
+    </div>
+
+    <div class="surprise" id="eightSection" style="display: none">
+      <div class="card">
+        <img
+          src="images/foto 4.jpg"
+          alt="us"
+          style="
+            width: 100%;
+            max-width: 280px;
+            border-radius: 12px;
+            display: block;
+            margin: 0 auto 20px;
+            animation: none;
+          "
+        />
+        <div class="title" style="font-size: 22px; line-height: 1.5">
+          I hope we keep creating memories, big and small, together
+        </div>
+        <br />
+        <button class="btn" onclick="showNinthPage()">klik ini &lt;3</button>
+      </div>
+    </div>
+
+    <div class="surprise" id="ninthSection" style="display: none">
+      <div class="card">
+        <img
+          src="images/foto 5.jpg"
+          alt="us"
+          style="
+            width: 100%;
+            max-width: 280px;
+            border-radius: 12px;
+            display: block;
+            margin: 0 auto 20px;
+            animation: none;
+          "
+        />
+        <div class="title" style="font-size: 22px; line-height: 1.5">
+          you deserve the world and i'll always love you
+        </div>
+        <div class="subtitle" style="font-size: 18px">
+          you never gave up on me and for that im forever grateful, thankful to have girlfriend like you
+        </div>
+        <br />
+        <button class="btn" onclick="showMusicPage()">klik ini &lt;3</button>
+      </div>
+    </div>
+
+
+    <div class="surprise" id="finalSection" style="display: none">
+      <div class="card" id="finalCard">
+        <h1 style="font-size: 20px; color: #0d47a1; margin-bottom: 20px">
+          Happy birthday, my love 🤍🤍
+        </h1>
+        <div
+          id="typedText"
+          style="
+            text-align: left;
+            margin: 25px auto;
+            color: #0d47a1;
+            font-size: 15px;
+            line-height: 1.8;
+            max-height: 40vh;
+            overflow-y: auto;
+            white-space: pre-wrap;
+          "
+        ></div>
+        <br />
+        <button
+          class="btn"
+          id="backBtn"
+          onclick="location.reload()"
+          style="display: none"
+        >
+          Kembali ke Awal
+        </button>
+      </div>
+    </div>
+
+    <script>
+      /* Password Logic */
+      let currentPassword = "";
+      const correctPassword = "150609";
+
+      function addDigit(digit) {
+        if (currentPassword.length < 6) {
+          currentPassword += String(digit);
+          updateIndicators();
+          if (currentPassword.length === 6) {
+            setTimeout(checkPassword, 300);
+          }
+        }
+      }
+
+      function deleteDigit() {
+        if (currentPassword.length > 0) {
+          currentPassword = currentPassword.slice(0, -1);
+          updateIndicators();
+        }
+      }
+
+      function updateIndicators() {
+        const dots = document.querySelectorAll(".pass-dot");
+        dots.forEach((dot, index) => {
+          if (index < currentPassword.length) {
+            dot.classList.add("filled");
+          } else {
+            dot.classList.remove("filled");
+          }
+        });
+      }
+
+      function checkPassword() {
+        if (currentPassword === correctPassword) {
+          // 1. Sembunyikan Password Section Langsung
+          document.getElementById("passwordSection").style.display = "none";
+
+          // Play Music Automatically
+          const bgMusic = document.getElementById("bgMusic");
+          const musicIcon = document.getElementById("music-icon");
+          if (bgMusic) {
+            bgMusic.play().then(() => {
+                // Icon Note (Nada)
+                if (musicIcon) {
+                    musicIcon.innerHTML = '<path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>';
+                }
+            }).catch(e => console.log("Auto play failed", e));
+          }
+
+          // 2. Sembunyikan Main Card (jika ada)
+          const mainCard = document.getElementById("mainCard");
+          if (mainCard) mainCard.style.display = "none";
+
+          // 3. Tampilkan Welcome Section
+          const welcome = document.getElementById("welcomeSection");
+          if (welcome) {
+            welcome.style.display = "block";
+            // Mulai GIF jika fungsi tersedia
+            if (typeof startGifLoop === "function") {
+              startGifLoop("welcomeGif");
+            }
+          }
+        } else {
+          // Wrong
+          const indicators = document.getElementById("passIndicators");
+          indicators.classList.add("shake");
+          setTimeout(() => {
+            indicators.classList.remove("shake");
+            currentPassword = "";
+            updateIndicators();
+          }, 500);
+        }
+      }
+
+      function showSpotify() {
+        const cassette = document.getElementById("cassette-wrapper");
+        const spotify = document.getElementById("spotify-wrapper");
+        const nextBtn = document.getElementById("to-final-page");
+
+        cassette.style.display = "none";
+        spotify.style.display = "block";
+
+        // Trigger reflow
+        void spotify.offsetWidth;
+
+        spotify.classList.add("visible");
+
+        setTimeout(() => {
+          nextBtn.style.display = "inline-block";
+        }, 1000);
+      }
+
+      function showMusicPage() {
+        document.getElementById("seventhSection").style.display = "none";
+        document.getElementById("musicSection").style.display = "block";
+      }
+
+      function showWelcomePage() {
+        document.getElementById("musicSection").style.display = "none";
+        const welcome = document.getElementById("welcomeSection");
+        if (welcome) {
+          welcome.style.display = "block";
+          // Mulai GIF jika fungsi tersedia
+          if (typeof startGifLoop === "function") {
+            startGifLoop("welcomeGif");
+          }
+        }
+      }
+
+      function showReadyPage() {
+        document.getElementById("welcomeSection").style.display = "none";
+        document.getElementById("readySection").style.display = "block";
+        if (gifInterval) clearInterval(gifInterval); // Stop loop gif halaman kedua
+      }
+
+      function showRefusePage() {
+        document.getElementById("readySection").style.display = "none";
+        document.getElementById("refuseSection").style.display = "block";
+      }
+
+      function backToReady() {
+        document.getElementById("refuseSection").style.display = "none";
+        document.getElementById("readySection").style.display = "block";
+      }
+
+      function showOpenItPage() {
+        document.getElementById("readySection").style.display = "none";
+        document.getElementById("openItSection").style.display = "block";
+      }
+
+      function showGiftPage() {
+        document.getElementById("openItSection").style.display = "none";
+        document.getElementById("giftSection").style.display = "block";
+      }
+
+      function showLastPage() {
+        document.getElementById("giftSection").style.display = "none";
+        document.getElementById("lastSection").style.display = "block";
+      }
+
+      function enterRealMain() {
+        // Sembunyikan semua section sebelumnya yang mungkin aktif
+        const sections = ["giftSection", "lastSection", "openItSection"];
+        sections.forEach((id) => {
+          const el = document.getElementById(id);
+          if (el) el.style.display = "none";
+        });
+
+        const fifth = document.getElementById("fifthSection");
+        if (fifth) {
+          fifth.style.display = "block";
+          fifth.classList.add("show");
+        }
+      }
+
+      /* EXISTING LOGIC */
+      let gifInterval;
+      const gifDuration = 2500;
+
+      function startGifLoop(imgId) {
+        if (gifInterval) clearInterval(gifInterval);
+        const img = document.getElementById(imgId);
+        if (!img) return;
+        const originalSrc = img.src.split("?")[0];
+
+        gifInterval = setInterval(() => {
+          img.src = originalSrc + "?t=" + new Date().getTime();
+        }, gifDuration);
+      }
+
+      // Hapus auto start saat load karena sekarang ada flow halaman
+      // window.addEventListener("load", startGifLoop);
+
+      function revealSurprise() {
+        // Hentikan pengulangan GIF
+        if (gifInterval) clearInterval(gifInterval);
+
+        // Stop animation CSS
+        const img = document.getElementById("stikerImg");
+        if (img) img.classList.add("stop-animation");
+
+        // Hide main card and show surprise
+        const mainCard = document.getElementById("mainCard");
+        const surprise = document.getElementById("surpriseSection");
+
+        mainCard.style.display = "none";
+        surprise.classList.add("show");
+      }
+
+      function showThirdPage() {
+        const surprise = document.getElementById("surpriseSection");
+        const third = document.getElementById("thirdSection");
+
+        surprise.style.display = "none";
+        third.style.display = "block";
+        third.classList.add("show");
+      }
+
+      function showFourthPage() {
+        const third = document.getElementById("thirdSection");
+        const fourth = document.getElementById("fourthSection");
+
+        third.style.display = "none";
+        fourth.style.display = "block";
+        fourth.classList.add("show");
+      }
+
+      function showFifthPage() {
+        const fourth = document.getElementById("fourthSection");
+        const fifth = document.getElementById("fifthSection");
+
+        fourth.style.display = "none";
+        fifth.style.display = "block";
+        fifth.classList.add("show");
+      }
+
+      function showSixthPage() {
+        const fifth = document.getElementById("fifthSection");
+        const sixth = document.getElementById("sixthSection");
+
+        fifth.style.display = "none";
+        sixth.style.display = "block";
+        sixth.classList.add("show");
+      }
+
+      function showSeventhPage() {
+        const sixth = document.getElementById("sixthSection");
+        const seventh = document.getElementById("seventhSection");
+
+        sixth.style.display = "none";
+        seventh.style.display = "block";
+        seventh.classList.add("show");
+      }
+
+      function showEightPage() {
+        const seventh = document.getElementById("seventhSection");
+        const eight = document.getElementById("eightSection");
+
+        seventh.style.display = "none";
+        eight.style.display = "block";
+        eight.classList.add("show");
+      }
+
+      function showNinthPage() {
+        const eight = document.getElementById("eightSection");
+        const ninth = document.getElementById("ninthSection");
+
+        eight.style.display = "none";
+        ninth.style.display = "block";
+        ninth.classList.add("show");
+      }
+
+      function showMusicPage() {
+        const ninth = document.getElementById("ninthSection");
+        const music = document.getElementById("musicSection");
+
+        ninth.style.display = "none";
+        music.style.display = "block";
+        music.classList.add("show");
+      }
+
+      function finalSurprise() {
+        const fifth = document.getElementById("fifthSection"); // Safety
+        const sixth = document.getElementById("sixthSection");
+        const music = document.getElementById("musicSection");
+        const final = document.getElementById("finalSection");
+
+        if (fifth) fifth.style.display = "none";
+        if (sixth) sixth.style.display = "none";
+        if (music) music.style.display = "none";
+        
+        final.style.display = "block";
+        final.classList.add("show");
+
+        // Delay sedikit agar rendering selesai sebelum hitung tinggi
+        setTimeout(() => {
+             typeWriter();
+        }, 50);
+      }              
+
+      const messageTextIgnored = ""; 
+
+      function typeWriter() {
+        const messageText = `On your special day, I just want to remind you how grateful I am to have you in my life. Thank you for being the amazing person you are—kind, loving, and always making everything feel a little warmer just by being around.
+
+I hope this new year of your life brings you happiness, peace, and all the good things you’ve been wishing for. May every step you take feel lighter, and may you always be surrounded by love and people who truly care about you. You deserve so much more than you realize.
+
+I’m thankful I get to celebrate you, today and hopefully many days after this. I look forward to creating more memories with you, growing together, and loving you in all the simple ways that matter most. Happy birthday 🤍✨`;
+
+        const element = document.getElementById("typedText");
+        if (!element) return;
+
+        // Reset styling
+        element.style.height = "auto";
+        element.style.overflowY = "auto";
+        element.style.textAlign = "left";
+        element.innerHTML = ""; // Clear existing content
+
+        // Create container structure via DOM API for safety
+        const container = document.createElement("div");
+        container.style.borderLeft = "4px solid #2979ff";
+        container.style.paddingLeft = "20px";
+        container.style.whiteSpace = "pre-wrap";
+        container.style.position = "relative";
+        
+        const textSpan = document.createElement("span");
+        textSpan.id = "finalMessageContent";
+        textSpan.style.color = "#0d47a1"; // Ensure text color is visible
+        textSpan.style.display = "inline";
+        container.appendChild(textSpan);
+        
+        const cursorSpan = document.createElement("span");
+        cursorSpan.className = "cursor";
+        cursorSpan.style.display = "inline-block";
+        cursorSpan.style.width = "3px";
+        cursorSpan.style.backgroundColor = "#2979ff";
+        container.appendChild(cursorSpan);
+        
+        element.appendChild(container);
+
+        let i = 0;
+        const speed = 25; 
+        
+        // Safe confetti start
+        try {
+            if (typeof startConfettiFixed === "function") {
+                startConfettiFixed();
+            } else if (typeof startConfetti === "function") {
+                startConfetti();
+            }
+        } catch(e) { console.log("Confetti error", e); }
+
+        function type() {
+          if (i < messageText.length) {
+            textSpan.textContent += messageText.charAt(i);
+            i++;
+            // Auto scroll
+            if (element.scrollHeight > element.clientHeight) {
+                element.scrollTop = element.scrollHeight;
+            }
+            setTimeout(type, speed);
+          } else {
+            // Typing finished
+            if (typeof stopConfetti === "function") stopConfetti();
+            
+            const backBtn = document.getElementById("backBtn");
+            if(backBtn) backBtn.style.display = "inline-block";
+          }
+        }
+        
+        // Start typing
+        setTimeout(type, 100);
+      }
+
+      /* Top Music Logic */
+      const bgMusic = document.getElementById("bgMusic");
+      const musicIcon = document.getElementById("music-icon");
+
+      function toggleTopMusic() {
+        if (!bgMusic.paused) {
+          bgMusic.pause();
+          // Icon Play (Segitiga)
+          musicIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+        } else {
+          bgMusic.play();
+          // Icon Note (Nada)
+          musicIcon.innerHTML =
+            '<path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>';
+        }
+      }
+
+      let confettiInterval;
+
+      function startConfetti() {
+        if (confettiInterval) clearInterval(confettiInterval);
+
+        const symbols = ["💙", "💫"];
+
+        confettiInterval = setInterval(() => {
+          const confetti = document.createElement("div");
+          confetti.classList.add("confetti");
+          confetti.innerText =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+          confetti.style.left = Math.random() * 100 + "vw";
+          confetti.style.top = -20 + "px";
+
+          const duration = Math.random() * 3 + 2;
+          confetti.style.animationDuration = duration + "s";
+
+          document.body.appendChild(confetti);
+
+          setTimeout(() => {
+            confetti.remove();
+          }, duration * 1000);
+        }, 100);
+      }
+
+      function stopConfetti() {
+        clearInterval(confettiInterval);
+      }
+
+      function startConfettiFixed() {
+        if (confettiInterval) clearInterval(confettiInterval);
+
+        const symbols = ["💙", "💫"];
+
+        confettiInterval = setInterval(() => {
+          const confetti = document.createElement("div");
+          confetti.classList.add("confetti");
+          confetti.innerText =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+          confetti.style.left = Math.random() * 100 + "vw";
+          confetti.style.top = -20 + "px";
+
+          const duration = Math.random() * 3 + 2;
+          confetti.style.animationDuration = duration + "s";
+
+          document.body.appendChild(confetti);
+
+          setTimeout(() => {
+            confetti.remove();
+          }, duration * 1000);
+        }, 100);
+      }
+    </script>
+  </body>
+</html>
